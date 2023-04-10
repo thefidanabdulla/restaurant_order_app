@@ -1,0 +1,32 @@
+{
+  "orders": [
+    {
+      "id": "1",
+      "tableNumber": "",
+      "workerName": "",
+      "totalPrice": "",
+      "status": "",
+      "date": "",
+      "orderDetail": [
+        {
+          "id": "",
+          "productName": "",
+          "count": "",
+          "price": "",
+          "date": "",
+          "waitingTime": "",
+          "status": "",
+          "cancelStatus": ""
+        }
+      ]
+
+    }
+  ],
+  "products": [
+    {
+      "id": "",
+      "title": "",
+      "price": ""
+    }
+  ]
+}
