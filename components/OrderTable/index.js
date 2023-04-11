@@ -13,23 +13,11 @@ const OrderTable = () => {
   }, []);
 
   useEffect(() => {
-    const sortedOrdersTest = orderData.sort((a, b) => {
-      
-      if (new Date(a?.date) < new Date(b?.date)) return 1;
-      if (new Date(a?.date) > new Date(b?.date)) return -1;
-  
-      if (a.id < b.id) return -1;
-      if (a.id > b.id) return 1;
-  
-      return 0;
-    });
+    const sortedOrdersTest = orderData.sort((a, b) => new Date(b.date) - new Date(a.date));
     const sortedOrdersTest2 = sortedOrdersTest.sort((a, b) => {
 
       if (a.status === 'Sonlanmayıb' && b.status === 'Sonlanıb') return -1;
       if (a.status === 'Sonlanıb' && b.status === 'Sonlanmayıb') return 1;
-
-      // if (new Date(a?.date) < new Date(b?.date)) return 1;
-      // if (new Date(a?.date) > new Date(b?.date)) return -1;
 
       if (a.id < b.id) return -1;
       if (a.id > b.id) return 1;
@@ -38,6 +26,14 @@ const OrderTable = () => {
     });
     setSortedOrders(sortedOrdersTest2);
   },[orderData])
+
+  const calculateTotalPrice = (calcItem) =>{
+    let totalPrice = 0;
+    calcItem?.orderDetail.map((itm) => {
+      totalPrice += parseInt(itm?.price);
+    })
+    return totalPrice;
+  }
 
   return (
     <div className="container mx-auto mt-10">
@@ -86,7 +82,7 @@ const OrderTable = () => {
                     {orderItem?.status}
                   </td>
                   <td className={`px-6 py-4 whitespace-nowrap text-sm ${orderItem?.status == "Sonlanmayıb" ? "text-red-800 font-semibold" : " text-gray-500"}`}>
-                    {orderItem?.totalPrice}
+                    {calculateTotalPrice(orderItem)}
                   </td>
                   <td className={`px-6 py-4 whitespace-nowrap text-sm ${orderItem?.status == "Sonlanmayıb" ? "text-red-800 font-semibold" : " text-gray-500"}`}>
                     {orderItem?.date ? orderItem?.date : "------------"}

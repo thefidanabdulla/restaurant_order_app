@@ -3,7 +3,7 @@ import React from 'react'
 
 const Index = () => {
   return (
-    <nav className="bg-blue-100 py-4">
+    <nav className="bg-blue-100 py-4 sticky top-0 left-0 shadow-sm">
       <div className="container flex justify-between items-center mx-auto px-2">
         <Link href={"/"} className='text-4xl italic font-bold opacity-80'>
           Orders

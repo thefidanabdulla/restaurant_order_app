@@ -1,11 +1,15 @@
 import { nanoid } from "nanoid";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const CreateOrderPage = () => {
+  const router = useRouter();
+  const [anyProductData, setanyProductData] = useState(false)
+
   const [orderData, setorderData] = useState({})
   const [tableNumber, setTableNumber] = useState("");
   const [workerName, setWorkerName] = useState("");
-  const [status, setStatus] = useState("Unfinished");
+  const [orderStatus, setOrderStatus] = useState("Sonlanıb");
   const [date, setDate] = useState("");
 
   const [products, setProducts] = useState([]);
@@ -13,7 +17,7 @@ const CreateOrderPage = () => {
   const [count, setCount] = useState(0);
   const [price, setPrice] = useState(0);
   const [waitingTime, setWaitingTime] = useState("10");
-  const [productStatus, setProductStatus] = useState("Sonlanıb");
+  const [productStatus, setProductStatus] = useState("Verildi");
   const [cancelStatus, setcancelStatus] = useState("False");
 
   const [addProductFormData, setaddProductFormData] = useState({})
@@ -31,10 +35,9 @@ const CreateOrderPage = () => {
       id: nanoid(),
       tableNumber,
       workerName,
-      status,
+      status: orderStatus,
       date,
-      orderDetail: [addProductFormData],
-      totalPrice: ""
+      orderDetail: [addProductFormData]
     };
 
     const response = await fetch('http://localhost:3001/orders', {
@@ -44,9 +47,11 @@ const CreateOrderPage = () => {
       },
       body: JSON.stringify(data)
     });
+    console.log(JSON.stringify(data))
 
     if (response.ok) {
       alert('Order created successfully!');
+      router.push("/");
     } else {
       alert('Failed to create order.');
     }
@@ -59,7 +64,6 @@ const CreateOrderPage = () => {
       productName,
       count,
       status: productStatus,
-      date,
       price: products.filter((itm) => itm?.title === productName)[0].price * count,
       waitingTime,
       cancelStatus
@@ -69,8 +73,8 @@ const CreateOrderPage = () => {
     setProductName("");
     setWaitingTime("");
     setProductStatus("");
-    setStatus("")
-    alert("Product added succesfully.")
+    alert("Product added succesfully. You can add some product too")
+    setanyProductData(true);
 
   }
 
@@ -136,7 +140,7 @@ const CreateOrderPage = () => {
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-2" htmlFor="cancel-status">
-            Status
+            Cancel Status
           </label>
           <select
             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -162,69 +166,71 @@ const CreateOrderPage = () => {
       <h1 className="text-2xl font-bold mb-4">Create restaurant order</h1>
       <h3 className="text-lg font-bold mb-4">Add Product</h3>
       <AddProduct />
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2" htmlFor="table-number">
-            Table Number
-          </label>
-          <input
-            className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="table-number"
-            required
-            type="text"
-            placeholder="Table Number"
-            value={tableNumber}
-            onChange={(event) => setTableNumber(event.target.value)}
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2" htmlFor="waiter-name">
-            Waiter Name
-          </label>
-          <input
-            className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="waiter-name"
-            type="text"
-            required
-            placeholder="Waiter Name"
-            value={workerName}
-            onChange={(event) => setWorkerName(event.target.value)}
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2" htmlFor="status">
-            Status
-          </label>
-          <select
-            className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="status"
-            value={status}
-            onChange={(event) => setStatus(event.target.value)}
+      {anyProductData && (
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="table-number">
+              Table Number
+            </label>
+            <input
+              className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="table-number"
+              required
+              type="text"
+              placeholder="Table Number"
+              value={tableNumber}
+              onChange={(event) => setTableNumber(event.target.value)}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="waiter-name">
+              Waiter Name
+            </label>
+            <input
+              className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="waiter-name"
+              type="text"
+              required
+              placeholder="Waiter Name"
+              value={workerName}
+              onChange={(event) => setWorkerName(event.target.value)}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="status">
+              Status
+            </label>
+            <select
+              className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="status"
+              value={orderStatus}
+              onChange={(event) => setOrderStatus(event.target.value)}
+            >
+              <option value="Sonlanıb">Sonlanıb</option>
+              <option value="Sonlanmayıb">Sonlanmayıb</option>
+            </select>
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="date">
+              Date
+            </label>
+            <input
+              className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="date"
+              required
+              type="date"
+              value={date}
+              onChange={(event) => setDate(event.target.value)}
+            />
+          </div>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            type="submit"
           >
-            <option value="Sonlanıb">Sonlanıb</option>
-            <option value="Sonlanmayıb">Sonlanmayıb</option>
-          </select>
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2" htmlFor="date">
-            Date
-          </label>
-          <input
-            className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="date"
-            required
-            type="date"
-            value={date}
-            onChange={(event) => setDate(event.target.value)}
-          />
-        </div>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          type="submit"
-        >
-          Submit
-        </button>
-      </form>
+            Submit
+          </button>
+        </form>
+      )}
     </div>
   );
 };

@@ -1,114 +1,40 @@
 {
   "orders": [
     {
-      "id": "1000",
-      "tableNumber": "A1",
-      "workerName": "Ali",
-      "totalPrice": "25",
+      "id": "4sbA8vWtRasHlJO7c49D1",
+      "tableNumber": "a404",
+      "workerName": "Sadig",
       "status": "Sonlanıb",
-      "date": "2023-04-06",
-      "orderDetail": [
-        {
-          "id": "1001",
-          "productName": "Burger",
-          "count": "2",
-          "price": "15",
-          "date": "2023-04-06",
-          "waitingTime": "00:15",
-          "status": "Verildi",
-          "cancelStatus": "false"
-        },
-        {
-          "id": "1002",
-          "productName": "Pizza",
-          "count": "1",
-          "price": "18",
-          "date": "2023-04-06",
-          "waitingTime": "00:20",
-          "status": "Verildi",
-          "cancelStatus": "false"
-        }
-      ]
-    },
-    {
-      "id": "2000",
-      "tableNumber": "c5",
-      "workerName": "Samed",
-      "totalPrice": "11.5",
-      "status": "Sonlanmayıb",
-      "date": "",
-      "orderDetail": [
-        {
-          "id": "2001",
-          "productName": "Doner",
-          "count": "2",
-          "price": "15",
-          "date": "2023-04-06",
-          "waitingTime": "00:15",
-          "status": "Verildi",
-          "cancelStatus": "false"
-        },
-        {
-          "id": "2002",
-          "productName": "Burger",
-          "count": "1",
-          "price": "18",
-          "date": "2023-04-06",
-          "waitingTime": "00:20",
-          "status": "Verildi",
-          "cancelStatus": "false"
-        },
-        {
-          "id": "2002",
-          "productName": "Pizza",
-          "count": "1",
-          "price": "18",
-          "date": "2023-04-06",
-          "waitingTime": "00:20",
-          "status": "İmtina",
-          "cancelStatus": "true"
-        }
-      ]
-    },
-    {
-      "id": "7J--HtLbe21-4yjAHwb_9",
-      "tableNumber": "fdsffdsf",
-      "workerName": "dsfs",
-      "status": "",
       "date": "2023-04-11",
       "orderDetail": [
         {
-          "id": "fzRq6_vPQ6-D5N5rzSkQo",
-          "productName": "Burger",
+          "id": "X-NIMXZcQWbulYWrgeZ79",
+          "productName": "Doner",
           "count": "2",
-          "status": "Verilmədi",
-          "date": "2023-04-11",
-          "price": 15,
-          "waitingTime": "11",
+          "status": "",
+          "price": 8,
+          "waitingTime": "9",
           "cancelStatus": "False"
         }
-      ],
-      "totalPrice": ""
+      ]
     },
     {
-      "id": "POfVLpEuKt6inmeFdMtHV",
-      "tableNumber": "a1",
-      "workerName": "Fid",
+      "id": "isMaC00ZcIr93MJplw8cd",
+      "tableNumber": "e444",
+      "workerName": "Said",
       "status": "Sonlanmayıb",
-      "date": "2023-04-11",
+      "date": "2023-04-10",
       "orderDetail": [
         {
-          "id": "Dnzz1ubpx0ytjxeugUwrO",
-          "productName": "Doner",
-          "count": "1",
-          "status": "Verilmədi",
-          "date": "",
-          "price": 4,
+          "id": "u4ec09SwWtk07viKXvLau",
+          "productName": "Burger",
+          "count": 0,
+          "status": "Verildi",
+          "price": 0,
           "waitingTime": "10",
-          "cancelStatus": "True"
+          "cancelStatus": "False"
         }
-      ],
-      "totalPrice": ""
+      ]
     }
   ],
   "products": [

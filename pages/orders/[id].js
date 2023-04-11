@@ -11,6 +11,13 @@ const Index = () => {
       .catch(error => console.log(error));
   }, []);
   console.log(orderDetail)
+  const calculateTotalPrice = () =>{
+    let totalPrice = 0;
+    orderDetail?.orderDetail?.map((itm) => {
+      totalPrice += parseInt(itm?.price);
+    })
+    return totalPrice;
+  }
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-3xl font-bold mt-8 mb-4">Order Detail</h1>
@@ -29,7 +36,7 @@ const Index = () => {
                 </tr>
                 <tr className='border-b border-blue-100 '>
                   <td className="px-6 py-3 text-left text-lg font-bold text-gray-500 uppercase tracking-wider">Total Price:</td>
-                  <td className='font-semibold text-[#121149] text-lg'>{orderDetail?.totalPrice}</td>
+                  <td className='font-semibold text-[#121149] text-lg'>{calculateTotalPrice()}</td>
                 </tr>
                 <tr className='border-b border-blue-100 '>
                   <td className="px-6 py-3 text-left text-lg font-bold text-gray-500 uppercase tracking-wider">Status:</td>
@@ -58,9 +65,6 @@ const Index = () => {
                     Price
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
-                    Date
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
                     Waiting Time
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
@@ -83,9 +87,6 @@ const Index = () => {
                     </td>
                     <td className={`px-6 py-4 whitespace-nowrap text-sm font-medium ${orderDetailItem?.cancelStatus == "true" ? "text-gray-400 font-semibold" : "text-gray-900"} `}>
                       {orderDetailItem?.price}
-                    </td>
-                    <td className={`px-6 py-4 whitespace-nowrap text-sm font-medium ${orderDetailItem?.cancelStatus == "true" ? "text-gray-400 font-semibold" : "text-gray-900"} `}>
-                      {orderDetailItem?.date}
                     </td>
                     <td className={`px-6 py-4 whitespace-nowrap text-sm font-medium ${orderDetailItem?.cancelStatus == "true" ? "text-gray-400 font-semibold" : "text-gray-900"} `}>
                       {orderDetailItem?.waitingTime}
