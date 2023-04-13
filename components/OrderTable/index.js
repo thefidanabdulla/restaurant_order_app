@@ -13,8 +13,8 @@ const OrderTable = () => {
   }, []);
 
   useEffect(() => {
-    const sortedOrdersTest = orderData.sort((a, b) => new Date(b.date) - new Date(a.date));
-    const sortedOrdersTest2 = sortedOrdersTest.sort((a, b) => {
+    const sortedOrdersTest = orderData?.sort((a, b) => new Date(b.date) - new Date(a.date));
+    const sortedOrdersTest2 = sortedOrdersTest?.sort((a, b) => {
 
       if (a.status === 'Sonlanmayıb' && b.status === 'Sonlanıb') return -1;
       if (a.status === 'Sonlanıb' && b.status === 'Sonlanmayıb') return 1;
